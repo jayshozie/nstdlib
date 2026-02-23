@@ -1,0 +1,15 @@
+# artifacts
+*.o
+*.out
+*.exe
+*.ilk
+*.i
+*.d
+*.hex
+
+# utilities
+utils*
+license-*
+
+# licensed books
+*.pdf
