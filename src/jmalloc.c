@@ -93,8 +93,7 @@ void *jmalloc(size_t size)
 #endif
 		if (p->b.is_free && p->b.size >= total) {
 			/* claim the block. there is enough space */
-			if (p->b.size - total >=
-			    sizeof(header)) { /* trim the block */
+			if (p->b.size - total >= sizeof(header)) { /* trim */
 				/* there is enough space for a second block */
 				n = (header *)((void *)p + total);
 				n->b.is_free = true;
