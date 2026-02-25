@@ -6,10 +6,12 @@
 *.i
 *.d
 *.hex
+test
 
 # utilities
 utils*
 license-*
+bs.md
 
 # licensed books
 *.pdf

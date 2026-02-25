@@ -14,7 +14,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-#include "jmalloc.h"
+#include "jmm.h"
+#include <sys/mman.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <sys/types.h>
+#include <unistd.h>
 #if defined(DEBUG_JMALLOC) || defined(DEBUG_JFREE) || defined(DEBUG_JREALLOC)
 #include <stdio.h>
 #endif
@@ -74,7 +80,8 @@ void *jmalloc(size_t size)
 
 	if (total < size) {
 #ifdef DEBUG_JMALLOC
-		fprintf(stderr, "[DEBUG] integer overflow. size : %d\n", size);
+		fprintf(stderr, "[DEBUG] integer overflow. size : %d\n",
+			(int)size);
 #endif
 		return NULL;
 	}
@@ -138,7 +145,7 @@ void *jmalloc(size_t size)
 	return (void *)(++p);
 }
 
-void jfree(void *__attribute__((nullable)) p)
+void jfree(void *__jnullable p)
 {
 	header *prev = NULL;
 	header *dead = NULL;

@@ -16,11 +16,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
 /* Assisted by: Gemini:gemini-3.1-pro-preview */
 
+#include "nstdlib.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "jmalloc.h"
 
 // Simple testing macros for cleaner output
 #define TEST_PRINT(msg) printf("[TEST] %s\n", msg)
