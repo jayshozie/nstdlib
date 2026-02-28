@@ -1,5 +1,3 @@
-#if !defined(__JSTDLIB__)
-# define __JSTDLIB__
 /* nstdlib - C standard library implementation done as a study exercise.
 Copyright (C) 2026  Emir Baha Yıldırım
 
@@ -16,8 +14,30 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-#include "jmm.h"
 #include "jstring.h"
 
-#endif /* __JSTDLIB__ */
+void *jmemmove(void *dest, const void *src, size_t n)
+{
+        unsigned char *d;
+        unsigned char *s;
+	/* no op */
+	if (dest == src)
+		return dest;
 
+        d = (unsigned char *)dest;
+        s = (unsigned char *)src;
+
+	if (dest < src) {
+		/* safe */
+                for (size_t i = 0; i < n; i++) {
+                        d[i] = s[i];
+                }
+                return (void *)d;
+	} else {
+                /* not safe, reverse */
+                for (size_t i = n; i != 0; i--) {
+                        d[i-1] = s[i-1];
+                }
+                return (void *)d;
+	}
+}

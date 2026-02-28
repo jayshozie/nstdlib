@@ -1,5 +1,3 @@
-#if !defined(__JSTDLIB__)
-# define __JSTDLIB__
 /* nstdlib - C standard library implementation done as a study exercise.
 Copyright (C) 2026  Emir Baha Yıldırım
 
@@ -19,5 +17,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 #include "jmm.h"
 #include "jstring.h"
 
-#endif /* __JSTDLIB__ */
+char *jstrdup(const char *s)
+{
+	size_t len;
+        char *ret;
+        len = jstrlen(s);
 
+	if (!(ret = jmalloc((len + 1) * sizeof(char))))
+		return NULL;
+
+	ret = jstrcpy(ret, s);
+
+	return ret;
+}

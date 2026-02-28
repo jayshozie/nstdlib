@@ -1,5 +1,3 @@
-#if !defined(__JSTDLIB__)
-# define __JSTDLIB__
 /* nstdlib - C standard library implementation done as a study exercise.
 Copyright (C) 2026  Emir Baha Yıldırım
 
@@ -16,8 +14,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-#include "jmm.h"
 #include "jstring.h"
 
-#endif /* __JSTDLIB__ */
+char *jstrcpy(char *restrict dst, const char *restrict src)
+{
+        char *anchor = dst;
 
+        while ((*dst++ = *src++))
+                ;
+
+        return anchor;
+}

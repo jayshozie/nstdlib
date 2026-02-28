@@ -1,5 +1,3 @@
-#if !defined(__JSTDLIB__)
-# define __JSTDLIB__
 /* nstdlib - C standard library implementation done as a study exercise.
 Copyright (C) 2026  Emir Baha Yıldırım
 
@@ -16,8 +14,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-#include "jmm.h"
 #include "jstring.h"
 
-#endif /* __JSTDLIB__ */
-
+int jmemcmp(const void *s1, const void *s2, size_t n)
+{
+        const unsigned char *t1 = (const unsigned char *)s1;
+        const unsigned char *t2 = (const unsigned char *)s2;
+        for (size_t i = 0; i < n; i++) {
+                if (t1[i] != t2[i])
+                        return t1[i] - t2[i];
+        }
+        return 0;
+}
